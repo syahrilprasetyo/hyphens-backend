@@ -4,6 +4,7 @@ import { router } from './routers/index_router';
 import { setupAllTablesSetup } from './config/db_config';
 import Helmet from 'helmet';
 import Cors from "cors";
+import path from 'path';
 
 
 const port = 8000;
@@ -19,6 +20,10 @@ app.use(Cors());
 
 app.use(Express.json());
 app.use(Express.urlencoded({ extended: false }));
+
+// Serve static files from the /uploads directory
+app.use('/images', Express.static(path.join(__dirname, '../uploads')));
+
 app.use('', router);
 app.get("/chats", (req, res) => {
   // Simulated chat data

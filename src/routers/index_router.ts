@@ -51,7 +51,7 @@ const upload = multer({ storage: storage });
 // Use upload middleware for /Product/AddProduct endpoint
 router.use('/Admin/AddProduct', upload.single('image'), async (req, res, next) => {
   const { productName, description, discount, finalPrice, stock, isActive, regularPrice } = req.body;
-  const imagePath = req.file ? req.file.path : null;
+  const imagePath = "http://localhost:8000/images/"+ req.file?.filename;
 
   // Basic validation
   if (!productName || !description || !discount || !finalPrice || !stock) {
